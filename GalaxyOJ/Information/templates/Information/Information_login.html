@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    {% load staticfiles %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>{{information_title.title}}</title>
+
+    <link href="{% static 'Information/css/Information_style.css' %}" rel="stylesheet" type="text/css" />
+
+    <script language='JavaScript' type='text/javascript' src="{% static 'Information/js/Information_code.js' %}"></script>
+
+</head>
+
+
+<body>
+<div id="Container">
+    <div id="C2">
+
+         {% if request.session.username %}
+        <!-- 登陆后 -->
+            <div id="login">
+            <a href="/user/logout">
+                <p id="logout" class="H1_style" style="left: 13.8%;">Logout</p>
+            </a>
+            <a href="#">
+                <p id="change_password" class="H1_style" style="left: 19.5%;">ChangePassword</p>
+            </a>
+            <img class="Split_line" style="left:31%;" src="{% static 'Information/images/EssayList_images/login_line.png' %}"/>
+
+            <a href="{{homepage_url}}">
+                <p class="H1_style" style="left: 33%;">
+                    {{request.session.username}}
+                </p>
+                <img id="logout2" class="go" style="left:42%;" src="{% static 'Information/images/EssayList_images/go_selected.png' %}"/>
+            </a>
+            </div>
+        {% else %}
+        <!-- 登录前 -->
+            <div id="login01">
+                <a href="/user/login">
+                    <p id="C2login" class="H1_style" style="left: 13.8%;">Login</p>
+                </a>
+            <img class="Split_line" style="left:19.5%;" src="{% static 'Home/images/Main_images/login_line.png' %}">
+                <a><p id="C2regist" class="H1_style" style="left:23%;">Regist</p></a>
+            </div>
+
+        {% endif %}
+
+
+        <div id="language">
+            <img class="Split_line" style="left:44px;" src="{% static 'Information/images/Information_images/login_line.png' %}"/>
+            <p id="cn" class="H1_style" style="left:0; color:#fc605d" onclick="sel_change(1)">CN</p>
+            <p id="en" class="H1_style" style="left:65px;" onClick="sel_change(2)">EN</p>
+        </div>
+    </div>
+
+    <div id="C3"> <img src="{% static 'Information/images/Information_images/GalaxyOJ.png' %}"; style="display:block; margin:25px auto;"> </div>
+    <div id="C5" style="background-image:url({% static 'Information/images/Information_images/mid_bg.png' %}); background-size:cover;">
+        <div id="title" class="Title">
+            {{information_title.title}}
+        </div>
+        <div id="msg" class="Msg">
+            {{information_title.author}}&nbsp;&nbsp;&nbsp;&nbsp;{{information_title.date}}
+        </div>
+        <div id="text" class="Text">
+            {{information_data.data|safe}}
+            <br/>
+        </div>
+    </div>
+    <div id="C6">
+        <p class="foot">BestCoder Contest System 2.0<br>Copyright@2014-2016 HDU ACM Team</p>
+    </div>
+
+</div>
+</body>
+</html>

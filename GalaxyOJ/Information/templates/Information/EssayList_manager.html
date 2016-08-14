@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <link href="{% static 'Information/simditor-2.3.6/styles/simditor.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/module.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/hotkeys.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/uploader.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/simditor.js' %}"></script>
+    <meta charset="UTF-8">
+    <title>文章列表</title>
+    <link href="{% static 'Information/css/EssayList_style.css' %}" rel="stylesheet" type="text/css" />
+    <script type ="text/javascript">
+        var nowPage={{EssayList_page}}-1;
+        var ListSize={{Listsize}};
+    </script>
+    <script language='JavaScript' type='text/javascript' src="{% static 'Information/js/EssayList_code_manager.js' %}"></script>
+</head>
+
+<body>
+<div id="Container">
+    <div id = "C1" style="background-image: url({% static 'Information/images/EssayList_images/Head_bg.png' %});">
+
+        {% if request.session.username %}
+        <!-- 登陆后 -->
+            <div id="login">
+            <a href="/user/logout">
+                <p id="logout" class="H1_style" style="left: 13.8%;">Logout</p>
+            </a>
+            <a href="#">
+                <p id="change_password" class="H1_style" style="left: 19.5%;">ChangePassword</p>
+            </a>
+            <img class="Split_line" style="left:31%;" src="{% static 'Information/images/EssayList_images/login_line.png' %}"/>
+
+            <a href="/user/home/{{request.session.id}}">
+                <p class="H1_style" style="left: 33%;">
+                    {{request.session.username}}
+                </p>
+                <img id="logout2" class="go" style="left:42%;" src="{% static 'Information/images/EssayList_images/go_selected.png' %}"/>
+            </a>
+            </div>
+        {% else %}
+        <!-- 登录前 -->
+            <div id="login01">
+                <a href="/user/login">
+                    <p id="C2login" class="H1_style" style="left: 13.8%;">Login</p>
+                </a>
+            <img class="Split_line" style="left:19.5%;" src="{% static 'Home/images/Main_images/login_line.png' %}">
+                <a><p id="C2regist" class="H1_style" style="left:23%;">Regist</p></a>
+            </div>
+
+        {% endif %}
+
+        <div id="language">
+            <img class="Split_line" style="left: 82.8%;" src="{% static 'Information/images/EssayList_images/login_line.png' %}"/>
+            <p id="cn" class="H1_style" style="left: 80%;color:#fc605d">CN</p>
+            <p id="en" class="H1_style" style="left: 83.9%;">EN</p>
+        </div>
+    </div>
+    <div id="C2"> <img src="{% static 'Information/images/EssayList_images/GalaxyOJ.png' %}"; style="display:block; margin:0 auto;padding-top:30px"> </div>
+
+    <div id = "C3">
+        <div class="BOX">
+            <ul>
+                <li><a style="color:#24b6ba; line-height:64px; border-top:3px solid #24b6ba;" href="/" title="Return to Homepage">Home</a></li>
+                <li><a href="#" title="View all problems">Problems</a></li>
+                <li><a href="#" title="View all contests">Contests</a></li>
+                <li><a href="#" title="Submit source code">Status</a></li>
+                <li><a href="#" title="View my submission status">Code Base</a></li>
+                <li><a href="#" title="Discussion about the problems in sicily">Knowledge Base</a></li>
+            </ul>
+            <div>
+            <form><input type="text" name="post_search_text" class="search_text" size="20" id="search_text" value="Search for ID & Title"></form>
+            <div class="search_box"><img id="Search" src="{% static 'Information/images/EssayList_images/Search.png' %}"/>
+            </div>
+            <div id="search_line" style="position: absolute;left: 72.1%;top: 218.5px;height: 1px;width:203px;display: none;"><img id="Searchline" src="{% static 'Information/images/EssayList_images/search_line.png' %}"/></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="C4" style="position: relative; background-image: url({% static 'Information/images/EssayList_images/mid_bg.png' %});">
+        <div style="height: 120px"></div>
+        <table id="EList" style="width: 1000px;  margin: auto auto;" cellpadding="0" cellspacing="0">
+            {% for v in list %}
+            <tr style="height:60px">
+                <td class="Title"><a target="_blank" href="/information/{{v.id}}">{{v.title}}</a></td>
+                <td class="Author">{{v.author}}&nbsp;&nbsp;&nbsp;{{v.date}}</td>
+
+            {% if request.session.root and request.session.root > 0 %}
+                <td class="edit"  style="color: rgb(241, 92, 88);" >编辑</td>&nbsp;&nbsp;
+                <td class="edit"  style="color: rgb(36, 191, 194);" id="line1_up" ><a href="#" title="UP_Essay">置顶</a></td>&nbsp;&nbsp;
+                <td class="edit"  style="color: rgb(241, 92, 88);"  id="line1_del" ><a href="#" title="Del_Essay">删除</a></td>
+            {%endif%}
+            </tr >
+            {% endfor %}
+
+
+
+        </table>
+        <div id="changpage" style="width: 1000px; height: 40px; margin: 10px auto auto; text-align: right;"></div>
+
+        <div id="add" style="background:url({% static 'Information/images/EssayList_images/not selected.png' %}); width: 50px; height: 60px; position: absolute; top: 300px; right: 0;">
+        </div>
+
+
+
+        <div id="ChangeBox">
+            <div id="Change_firstRow" style="width: 100%; height: 40px; position: relative">
+                <img src="{% static 'Information/images/EssayList_images/编辑文章.png' %}" style="position: absolute; left: 30px;  ">
+                <div id="Change_closeIcon" style="width: 20px; height: 20px; position: absolute; top: 20px; right:20px">
+                    <img id="Change_closeNotSelected" src="{% static 'Information/images/EssayList_images/close_not selected.png' %}" style="position: absolute; top: 0; left: 0; opacity: 1;">
+                    <img id="Change_closeSelected" src="{% static 'Information/images/EssayList_images/close_selected.png' %}" style="position: absolute; top: 0; left: 0; opacity: 0;">
+                </div>
+            </div>
+            <form id="Change_Essay_submit">
+                <table style="width: 1000px; height: 240px; margin: auto auto; margin-top: 15px;" cellspacing="15px">
+                    <tr>
+                        <td align="center" >
+                            <input type="text" name="title" class="Essay_submit_style" size="20" placeholder="标题"
+                             style="width: 1000px; height: 48px"> </input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" ><input type="text" name="author" class="Essay_submit_style" size="20"  placeholder="作者" style="width: 1000px; height: 48px;"> </input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea id="editor01" name="editor"  wrap="hard"
+                             style=" width: 1000px; height: 600px;"> </textarea>
+                             <script>
+                                var editor01 = new Simditor({
+                                    textarea: $('#editor01')
+                                    //optional options
+                                });
+                            </script>
+                        </td>
+                    </tr>
+                </table>
+
+            <div id="Change_LastRow" style="width: 685px; height: 60px; position: relative; margin: 0 auto auto">
+                <input name="submit_Change" type="image" src="{% static 'Information/images/EssayList_images/确定.png' %}" style="position: absolute; right: 0;" >
+            </div>
+            </form>
+</div>
+
+
+        <div id="popBox" >
+            <div id="firstRow" style="width: 100%; height: 40px; position: relative">
+                <img src="{% static 'Information/images/EssayList_images/新增文章.png' %}" style="position: absolute; left: 30px;">
+                <div id="closeIcon" style="width: 20px; height: 20px; position: absolute; top: 20px; right:20px">
+                    <img id="closeNotSelected" src="{% static 'Information/images/EssayList_images/close_not selected.png' %}" style="position: absolute; top: 0; left: 0; opacity: 1;">
+                    <img id="closeSelected" src="{% static 'Information/images/EssayList_images/close_selected.png' %}" style="position: absolute; top: 0; left: 0; opacity: 0;">
+                </div>
+            </div>
+            <form method="post" action="store/">
+                {% csrf_token %}
+                <table style="width: 1000px; height: 240px; margin: auto auto; margin-top: 15px;" cellspacing="15px">
+                    <tr>
+                        <td align="center" >
+                            <input type="text" name="title" class="Essay_submit_style" size="20" placeholder="标题"
+                             style="width: 1000px; height: 48px"> </input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" ><input type="text" name="author" class="Essay_submit_style" size="20"  placeholder="作者" style="width: 1000px; height: 48px;"> </input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea id="editor" name="editor"  wrap="hard"
+                             style=" width: 1000px; height: 600px;"> </textarea>
+                             <script>
+                                var editor = new Simditor({
+                                    textarea: $('#editor')
+                                    //optional options
+                                });
+                            </script>
+                        </td>
+                    </tr>
+                </table>
+                <div id="LastRow" style="width: 1000px; height: 60px; position: relative; margin: 0 auto auto">
+                    <img  id="topNotSelected" src="{% static 'Information/images/EssayList_images/置顶未选中.png' %}" style="position: absolute; top: 0; left: 0; opacity: 1; ">
+                    <img  id="topSelected" src="{% static 'Information/images/EssayList_images/置顶选中.png' %}" style="position: absolute; top: 0; left: 0; opacity: 0">
+                    <input type="checkbox" id="setTop" name="setTop" value="置顶" style="width: 30px; height: 20px; position: absolute; top: 0; left: 45px; opacity: 0;">
+                    <input name="submit" type="image" src="{% static 'Information/images/EssayList_images/确定.png' %}" style="position: absolute; right: 0;" >
+                </div>
+
+            </form>
+        </div>
+
+
+
+
+    </div>
+
+    <div id="C5">
+        <p class="foot">BestCoder Contest System 2.0<br>Copyright@2014-2016 HDU ACM Team</p>
+    </div>
+</div>
+</body>
+
+</html>

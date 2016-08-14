@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+     {% load staticfiles %}
+    <link href="{% static 'Information/simditor-2.3.6/styles/simditor.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/module.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/hotkeys.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/uploader.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Information/simditor-2.3.6/scripts/simditor.js' %}"></script>
+
+
+
+</head>
+<body>
+    <form method="post" action="store/">
+        {% csrf_token %}
+        <input name="title" placeholder="标题">
+        <br><br>
+        <input name="author" placeholder="作者">
+        <br><br>
+        <input name="time" placeholder="时间">
+        <br><br>
+
+        <textarea id="editor" name="editor" autofocus></textarea>
+        <script>
+            var editor = new Simditor({
+                textarea: $('#editor')
+                //optional options
+            });
+        </script>
+        <input id="mess_confirm"  type="submit" name="submit_ok" value="submit">
+    </form>
+</body>
+</html>

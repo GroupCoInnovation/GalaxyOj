@@ -1,0 +1,227 @@
+
+*{ padding:0; margin:0; }
+#Container{
+    min-width: 1200px;
+    width:expression(document.body.clientWidth < 1200? "1200px": "auto" );
+}
+
+#C2,#C3,#C4,#C5,#C6{
+    width:100%;
+    border:#16222e solid 1px;
+}
+
+#C2{
+    height:88px;
+    background:#16222e;
+    background-image: url("/static/Home/images/Main_images/Head_bg.png");
+}
+
+#C3{
+    height:92px;
+    background:#16222e;
+}
+
+#C4{
+    height:70px;
+    background:#16222e;
+}
+
+#C5{
+    height:730px;
+    background:#16222e;
+}
+
+#C6{
+    height:100px;
+    background:#16222e;
+}
+
+/*C2 part*/
+.search_box{
+  position: absolute;
+  left: 72%;
+  top: 202px;
+  text-align:right;
+  height: 31px;
+  width:203px;
+  z-index:0;
+}
+.search_text{
+  font-size: 14px;
+  font-family: "FZLanTingKanHei-R-GBK";
+  color:#ccc;
+  border:hidden;
+  outline:none;
+  line-height: 1.333;
+  background: none;
+  position: absolute;
+  left: 73%;
+  top: 204px;
+  z-index:-1;
+}
+
+#language{
+    position:relative;
+    width:87px;
+    margin-left:90%;
+}
+.Split_line {
+    background-color:white;
+    position: absolute;
+    top: 41px;
+    width: 1px;
+    height: 30px;
+}
+.H1_style{
+    font-size: 15px;
+    font-family: "FZLanTingKanHei-R-GBK";
+    line-height: 1.333;
+    text-align: center;
+    position: absolute;
+    top: 50px;
+    color: white;
+}
+.textareaup{
+    font-size: 15px;
+    font-family: "FZLanTingKanHei-R-GBK";
+    line-height: 1.333;
+    text-align: center;
+    color: white;
+    position: absolute;
+    top:43px;
+    background-color:transparent;
+    border: 0px;
+}
+
+.go{
+            position: absolute;
+            top: 50px;
+}
+		
+.textareaup:focus{outline:0;}
+.圆角矩形{
+    position: absolute;
+    top: 30px;
+}
+/*C2 part end*/
+.BOX{
+    width: 1180px;
+    margin: 0 auto;
+}
+/*C4 part*/
+#C4 ul{padding:0px 0px; margin:0px 0px 0px 0px; list-style:none}
+#C4 ul li{float:left; margin-right:20px; text-align:center}
+#C4 ul li a{float:left; color:#fff; display:block; text-decoration:none; height:70px; line-height:70px; font-size:18px;}
+
+/*C4 part end*/
+/*C5 part*/
+#EssayText {
+    height:90px;
+    line-height:90px;
+}
+.B1U1{
+    width:317px;
+    height:40px;
+    font-size: 24px;
+    font-family: "FZLTKHK";
+    color: rgb(26, 26, 26);
+    line-height: 40px;
+    float:left;
+}
+.B1U2{
+    width:483px;
+    height:40px;
+    font-size: 15px;
+    font-family: "FZLTKHK";
+    color: rgb(26, 26, 26);
+    line-height: 40px;
+    z-index: 32;
+    float:left;
+}
+.B1D{
+    width:800px;
+    height:70px;
+    position:absolute;
+    bottom:0;
+    font-size: 14px;
+    font-family: "FZLTKHK";
+    color: rgb(26, 26, 26);
+    line-height: 1.6;
+    text-align: left;
+    z-index: 33;
+}
+.B1P4bg1 {background-image:url("/static/Home/images/Main_images/more_unselect.png");}
+.B1P4bg2 {background-image:url("/static/Home/images/Main_images/more_selected.png");}
+
+.B2P{
+    width: 192px;
+    height: auto;
+}
+
+.B2PU{
+    width:192px;
+    height:auto;
+    font-size: 18px;
+    font-family: "FZLanTingKanHei-R-GBK";
+    color: rgb(26, 26, 26);
+    line-height: 30px;
+    z-index: 68;
+    text-align: right;
+}
+.B2PD{
+    width:192px;
+    height:30px;
+    margin-top:10px;
+    text-align:right;
+    font-size: 15px;
+    font-family: "FZLanTingKanHei-R-GBK";
+    color: rgb(26, 26, 26);
+    line-height: 30px;
+    z-index: 67;
+}
+
+
+.system_bro {
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+.sys {
+    position: absolute;
+    top: 20px;
+}
+
+.System_prompt {
+    font-size: 20px;
+    color:black;
+    line-height: 1.111;
+    text-align:center;
+    position: absolute;
+    top: 37px;
+    left: 50px;
+}
+
+.Contest_line {
+    font-size: 15px;
+    color: black;
+    line-height: 1.1111;
+    text-align: center;
+    position: absolute;
+    left: 90px;
+    top: 70px;
+}
+/*C5 part end*/
+/*C2 part*/
+/*C2 part end*/
+/*C6 part*/
+.foot{
+    color:white;
+    font-size:15px;
+    font-family:"FZLanTingKanHei-R-GBK";
+    line-height:1.6;
+    text-align:center;
+    display:block;
+    margin:30px auto;
+}
+/*C6 part end*/

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>{{user.username}}</title>
+    <link href="{% static 'User/css/personal_style.css' %}" rel="stylesheet" type="text/css" />
+    <script language='JavaScript' type='text/javascript' src="{% static 'User/js/personal_code.js' %}"></script>
+    <style>
+        .Name_user{
+
+            font-family: "FZLanTingHei-DB-GBK";
+            color: rgb(255, 255, 255);
+            line-height: 1.25;
+            text-align: center;
+        }
+		.selectpic {
+			position: relative;
+			display: inline-block;
+			border-radius: 4px;
+			overflow: hidden;
+			text-decoration: none;
+			
+			float: left;
+			margin-left:38.1%;
+			margin-top:64px;
+		}
+		
+		.selectpic input {
+			position: absolute;
+			top: 0;
+			left: 0;
+			
+			z-index: 100;
+			width:250px;
+			height: 80px;
+			
+			filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+			filter:alpha(opacity=0);
+			-moz-opacity:0;
+			-khtml-opacity: 0;
+			opacity:0;
+			background: none;
+			border: none;
+			cursor: pointer;
+		}
+    </style>
+	<script language='JavaScript' type='text/javascript'>
+	
+        function formSubmit() {
+            var x = document.getElementById("message_input");
+            if(x.Signature.value=="(最多不超过40个字)"){
+                x.Signature.value="";
+            }
+            x.submit();
+            document.getElementById("Email_index").innerHTML = x.email.value;
+            document.getElementById("Organ_index").innerHTML = x.Organzation.value;
+            document.getElementById("Sign_index").innerHTML = x.Signature.value;
+        }	
+
+        function back_text(){
+            document.getElementById("Email_index").nodeValue = document.getElementById("Email").nodeValue;
+            document.getElementById("Organ_index").nodeValue = document.getElementById("Organ").nodeValue;
+            document.getElementById("Sign_index").nodeValue = document.getElementById("Sign").nodeValue;
+
+        }
+    </script>
+</head>
+
+<body>
+<div id="Container">
+    <div id = "C1" style="background-image: url({% static 'User/images/personal_images/Head_bg.png' %});">
+        <div id="login">
+            <a href="/user/logout">
+                <p id="logout" class="H1_style" style="left: 13.8%;">Logout</p>
+            </a>
+            <a href="#">
+                <p id="change_password" class="H1_style" style="left: 19.5%;">ChangePassword</p>
+            </a>
+            <img class="Split_line" style="left:31%;" src="{% static 'Information/images/EssayList_images/login_line.png' %}"/>
+
+            <a href="{{homepage_url}}">
+                <p class="H1_style" style="left: 33%;">
+                    {{request.session.username}}
+                </p>
+                <img id="logout2" class="go" style="left:42%;" src="{% static 'Information/images/EssayList_images/go_selected.png' %}"/>
+            </a>
+        </div>
+
+
+        <div id="language">
+            <img class="Split_line" style="left: 82.8%;" src="{% static 'User/images/personal_images/login_line.png' %}"/>
+            <p id="cn" class="H1_style" style="left: 80%;color:#fc605d">CN</p>
+            <p id="en" class="H1_style" style="left: 83.9%;">EN</p>
+        </div>
+    </div>
+    <div id="C2"> <img src="{% static 'User/images/personal_images/GalaxyOJ.png' %}"; style="display:block; margin:0px auto;padding-top:30px"> </div>
+
+    <div id = "C3">
+        <div id="C3P1";>
+            <div class="Name_user" id="C3P1_name" style="font-size: 36px;" >{{user.username}}</div>
+            {% if user.root != 0 %}
+            <div class="Name_user" id="C3P1_role" style="font-size: 18px;";>(超级管理员权限)</div>
+            {% endif %}
+        </div>
+        <div id="C3P2">
+            <div id="C3P2_photoSet" class="part1" >
+                <div id="rank" class="C3P2_photo" style="position: relative;">
+                    <div id="mask_rank" style="position: absolute; top: 0; left: 0; opacity: 0; z-index: 80;">
+                        <img src="{% static 'User/images/personal_images/mask.png' %}"/>
+                    </div>
+                    <div id="pic_rank" style="position: absolute; width: 100%; line-height: 380px; opacity: 0; z-index: 100">
+                        <img src="{% static 'User/images/personal_images/rank.png'%}"/>
+                    </div>
+                    <div style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+                        <div class="Personal_Message" style="width: 305px; height: 70px;
+                               margin-top: 45px; margin-left: auto; margin-right: auto">
+                            <div class="Contribute_item" style="width: 245px; height: 60px; float: left;
+                                   padding-left: 5px; padding-top: 10px;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height: 1.333; text-align: left">
+                                The number of <br> completed problems:
+                            </div>
+                            <div class="Contribute_num" style="width: 50px; height: 70px; float: left;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height: 70px; ">
+                                   {{user.number}}
+                            </div>
+                        </div>
+                        <img src="{% static 'User/images/personal_images/shape_copy.png' %}">
+                        <div class="Personal_Message" style="width: 305px; height: 70px;
+                               margin-top: 5px; margin-left: auto; margin-right: auto">
+                            <div class="Contribute_item" style="width: 245px; height: 60px; float: left;
+                                   padding-left: 5px; padding-top: 10px;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height: 1.333; text-align: left">
+                                The value of <br> contribution:
+                            </div>
+                            <div class="Contribute_num" style="width: 50px; height: 70px; float: left;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height: 70px; ">
+                                   {{user.contribution}}
+                            </div>
+                        </div>
+                        <img src="{% static 'User/images/personal_images/shape_copy.png' %}">
+                        <div class="Personal_Message" style="width: 305px; height: 70px;
+                               margin-top: 5px; margin-left: auto; margin-right: auto">
+                            <div class="Contribute_item" style="width: 245px; height: 60px; float: left;
+                                   padding-left: 5px; padding-top: 10px;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height: 1.333; text-align: left">
+                                The porint of <br> accumulation:
+                            </div>
+                            <div class="Contribute_num" style="width: 50px; height: 70px; float: left;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height: 70px; ">
+                                   {{user.point}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="camera" class="C3P2_photo" style="position: relative;" >
+                    <div id="mask_camera" style="position: absolute; top: 0; left: 0; opacity: 0; z-index: 100;">
+                        <img src="{% static 'User/images/personal_images/mask.png' %}"/>
+                    </div>
+                    <div id="pic_camera" style="position: absolute; width: 100%; line-height: 380px; opacity: 0; z-index: 100;">
+                        <img src="{% static 'User/images/personal_images/camera.png' %}"/>
+                    </div>
+                    <div style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 80;">
+                        <img id="imgPre" src="{{user.imgsrc}}" style="height: 100%; width: 100%;" />
+                    </div>
+                </div>
+                <div id="text" class="C3P2_photo" style="position: relative;">
+                    <div id="mask_text" style="position: absolute;top: 0; left: 0; opacity: 0; z-index: 80;">
+                        <img src="{% static 'User/images/personal_images/mask.png' %}"/>
+                    </div>
+                    <div id="pic_text" style="position: absolute; width: 100%; line-height:380px; opacity: 0; z-index: 100;">
+                        <img src="{% static 'User/images/personal_images/change.png' %}"/>
+                    </div>
+                    <div style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+                        <div class="Personal_Message" style="width: 305px; height: 70px;
+                               margin-top: 45px; margin-left: auto; margin-right: auto">
+                            <div id="Email_index" class="Personal_item" style="width: 305px; height: 60px; float: left; padding-left: 5px;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height: 70px; text-align: left">
+                                   {{user.email}} 
+                            </div>
+                        </div>
+                        <img src="{% static 'User/images/personal_images/shape_copy.png' %}">
+                        <div class="Personal_Message" style="width: 305px; height: 70px;
+                               margin-top: 5px; margin-left: auto; margin-right: auto">
+                            <div id="Organ_index" class="Personal_item" style="width: 305px; height: 60px; float: left; padding-left: 5px;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height: 70px; text-align: left">
+                                {{user.department}} 
+                            </div>
+                        </div>
+                        <img src="{% static 'User/images/personal_images/shape_copy.png' %}">
+                        <div class="Personal_Message" style="width: 305px; height: 70px;
+                               margin-top: 5px; margin-left: auto; margin-right: auto">
+                            <div id="Sign_index" class="Personal_item" style="width: 305px; height: 60px; float: left; padding-left: 5px;padding-top: 20px;
+                                   font-size: 18px; font-family: FZLanTingKanHei-R-GBK; color: rgb(26, 26, 26); line-height:1.333; text-align: left">
+                                   {{user.description}} 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="C3P2_photoClick" class="part1" style="background-image: url({% static 'User/images/personal_images/长矩形_bg.png' %});display:none;">
+                <img src="{% static 'User/images/personal_images/上传照片.png' %}" style="float: left;margin-left: 3.77%">
+                <img id="photo_close" src="{% static 'User/images/personal_images/close.png' %}" style="float: left;margin-left:80%;padding-top:22px">
+                <form method = "post" action = "changeimg/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="selectpic" style="float: left;margin-left:38.1%;margin-top:64px">
+					    <input id="selectinput" name='images' type="file" class="file_cselectpic" />
+                        <img src="{% static 'User/images/personal_images/选择照片.png' %}" alt="上传照片" title="">
+                   </div>
+				<p class="选择图片_text">只支持jpg、png和gif，且大小不超过2M</p>
+                <input type="image" id="photo_confirm" src="{% static 'User/images/personal_images/btn_确定.png' %}" style="float: left;margin-left:81.8%;padding-top:30px">
+                </form>
+            </div>
+
+            <div id="C3P2_messClick" class="part1" style="background-image: url({% static 'User/images/personal_images/长矩形_bg.png' %});display:none; position: relative">
+                <div style="width: 100%; height: 100px;">
+                    <img src="{% static 'User/images/personal_images/修改个人信息.png' %}" style="float: left;margin-left: 3.77%">
+                    <img id="mess_close" src="{% static 'User/images/personal_images/close.png' %}" style="float: left; margin-left:75%;padding-top:22px">
+                </div>
+
+                <form id="message_input"  method="post" style="width: 480px; height: auto;  margin: auto;" action="changeinfo/">
+                    {% csrf_token %}
+                    <table style="width: 100%; height: 100%;">
+                        <tr style="height: 50px">
+                            <td style="width: 30px; text-align: center"><img src="{% static 'User/images/personal_images/persongnal_蓝矩形.png' %}"></td>
+                            <td style="width: 150px" class="message_input_name">Email</td>
+                            <td id="Email" style="width: 300px; text-align: center;">
+                                <input type="text" name="email" size="40" value='{{user.email}}'
+                                       style="background-color: #f6fcff; border-top:none; border-right:none; border-left-color:rgb(230, 230, 230); border-bottom: 1.5px solid rgb(230, 230, 230)"/>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td style="width: 30px; text-align: center"><img src="{% static 'User/images/personal_images/persongnal_蓝矩形.png' %}"></td>
+                            <td style="width: 150px" class="message_input_name">Organization</td>
+                            <td style="width: 300px; text-align: center;">
+                                <input id="Organ" type="text" name="organization" size="40"
+                                style="background-color: #f6fcff; border-top:none; border-right:none;  border-left-color:rgb(230, 230, 230); border-bottom: 1.5px solid rgb(230, 230, 230)" value='{{user.department}}'/>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td style="width: 30px; text-align: center"><img src="{% static 'User/images/personal_images/persongnal_蓝矩形.png' %}"></td>
+                            <td style="width: 150px" class="message_input_name">Signature</td>
+                            <td style="width: 300px; text-align: center;">
+                                <textarea id="Sign"  name="signature" rows="3"  maxlength="40" cols="35" 
+                                       style=" text-align: left; background-color: #f6fcff; border-top:none; border-right:none;
+                                       border-left-color:rgb(230, 230, 230); border-bottom: 1.5px solid rgb(230, 230, 230)">{{user.description}}</textarea>
+                            </td>
+                        </tr>
+                    </table>
+                    <input id="mess_confirm" style="opacity: 0; width: 152px; height: 72px; position: absolute; bottom: 5.6%; right: 3.3%" type="button" name="submit_ok" value="submit">
+
+                <div style="width: auto; height: auto; float:right; margin-bottom:5.6%; margin-right:3.3%;" onMouseOver="back_text()">
+                    <input type="image" src="{% static 'User/images/personal_images/btn_确定.png' %}"/>
+                </div>
+            </div>
+
+                </form>
+        </div>
+    </div>
+
+    <div id = "C4">
+        <div id="C4Box"; style="width: 800px; height: 950px; margin: 0 auto;">
+            <div id="C4P1">
+                <div id="C4P1_status" class="C4P1_button" style="width:204px;height:215px;margin:3.5px 0px 0 0;background:url({% static 'User/images/personal_images/C4P1_statusRed.png' %})">      </div>
+                <div id="C4P1_problem" class="C4P1_button" style="background:url({% static 'User/images/personal_images/C4P1_problemBlue.png' %})">				</div>
+                <div id="C4P1_code" class="C4P1_button" style="background:url({% static 'User/images/personal_images/C4P1_codeBlue.png' %})">				</div>
+                <div id="C4P1_contest" class="C4P1_button" style="background:url({% static 'User/images/personal_images/C4P1_contestBlue.png' %})">				</div>
+            </div>
+            <div class="C4P2" id="C4P2_status">
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+            </div>
+			<div class="C4P2" id="C4P2_problem" style="display:none">
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">problem_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">problem_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">problem_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+            </div>
+			<div class="C4P2" id="C4P2_code" style="display:none">
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">code_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">code_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">code_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+            </div>
+			<div class="C4P2" id="C4P2_contest" style="display:none">
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">contest_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">contest_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+                <div class="C4P2_message">
+                    <div class="C4P2_message_title">contest_Title</div>
+                    <div class="C4P2_message_content">中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。中山大学现由广州校区、珠海校区、深圳校区三个校区、五个校园及八家附属医院组成，正在向世界一流大学迈进，努力成为全球学术重镇。</div>
+                </div>
+            </div>
+            <div id="C4P3">
+				<a href="" id="C4P3_status" class="C4P3_more">More...</a>
+				<a href="" id="C4P3_problem" class="C4P3_more" style="display:none">More...</a>
+				<a href="" id="C4P3_code" class="C4P3_more" style="display:none">More...</a>
+				<a href="" id="C4P3_contest" class="C4P3_more" style="display:none">More...</a>			</div>
+        </div>
+    </div>
+    <div id="C5">
+        <p class="foot">BestCoder Contest System 2.0<br>Copyright@2014-2016 HDU ACM Team</p>
+    </div>
+</div>
+</body>
+</html>
